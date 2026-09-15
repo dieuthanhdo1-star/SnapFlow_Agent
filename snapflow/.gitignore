@@ -1,0 +1,8 @@
+.env
+api_key.json
+data/
+logs/
+__pycache__/
+.test-work/
+.tools/
+node_modules/

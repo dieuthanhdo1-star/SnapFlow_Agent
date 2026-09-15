@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>SnapFlow · 两天上手清单</title>
+<link rel="stylesheet" href="/guide.css">
+<main><a href="/">← 返回 SnapFlow</a><p class="tag">两天冲刺 · 2026-09-14 版</p><h1>今天跑通，明天拿真实截图验收。</h1><p>你负责账号授权和实际使用；代码、打包与问题修复交给开发端。每做完一步勾选，进度只保存在当前浏览器。</p><progress id="progress" max="10" value="0"></progress><p id="progress-label" class="muted"></p>
+<section><h2>第 1 天 · 今天先完成前 5 步</h2>
+<label class="step"><input type="checkbox" data-step="open"><span><b>1. 打开独立新版目录（约 10 分钟）</b><p>把新版 ZIP 解压到 <code>D:\CodeProgram\AgentM</code> 下的新文件夹。关闭旧版启动窗口，再双击新版的 <code>start-windows.cmd</code>。浏览器打开 <a href="/">SnapFlow 首页</a>。原有 <code>api_key.json</code> 留在 AgentM 目录，不要删除。</p><p>看到确认页中的“全部 / 待核对 / 可保存 / 已保存”筛选，就说明新界面已加载。需要旧记录时，先关闭服务，复制整个旧 data 到尚未启动的新目录，并保留原副本。</p></span></label>
+<label class="step"><input type="checkbox" data-step="batch"><span><b>2. 先用 2–3 张图体验批量保存（约 15 分钟）</b><p>点“打开相册”多选聊天通知、作业和普通图片。先看事项摘要；点缩略图看原图，只有不正确的事项才展开“修改事项”。点“确认保存”。有一条没识别好，其余的仍可先保存。</p><p>没有合适图片时，可选包内 <code>verification/sprint-20260914/images</code> 的 01、04、05；这些是虚构场景测试图。不要把演示图当成你真实要参加的活动。</p></span></label>
+<label class="step"><input type="checkbox" data-step="app"><span><b>3. 准备飞书应用（约 30–60 分钟，审批时间另计）</b><p>打开 <a href="https://open.feishu.cn/app" target="_blank" rel="noopener noreferrer">飞书开放平台</a>，登录后创建企业自建应用，名称可填“SnapFlow”。在“凭证与基础信息”找到 App ID / App Secret。</p><p>在权限管理开通用户身份权限：<code>offline_access</code>、<code>calendar:calendar:read</code>、<code>calendar:calendar.event:create</code>。在安全设置添加 SnapFlow 连接页显示的完整重定向地址；创建并发布版本，让应用可用范围包含你的账号。若没有创建或发布权限，需要组织管理员协助。</p><p>App Secret 只填在本机应用中，不要放进聊天或录屏。</p></span></label>
+<label class="step"><input type="checkbox" data-step="authorize"><span><b>4. 在 SnapFlow 登录飞书并选择日历（约 10 分钟）</b><p>首页左下角点“连接与使用说明” → 填写 App ID / App Secret → 保存应用配置 → 登录飞书授权 → 返回后“读取我的日历” → 选择自己的可写日历 → “连接此日历”。前三步显示完成即可；第四步需要真实创建后才会完成。</p></span></label>
+<label class="step"><input type="checkbox" data-step="live"><span><b>5. 完成一次真实日程验收（约 15 分钟）</b><p>选择一张自己的真实活动截图，核对完整起止时间并保存；点“同步已保存日程”，核对目标日历和事项，点“确认同步”。打开飞书日历找到这条记录，核对标题、时间、地点，并在飞书设好提醒。再次打开同步清单，已成功的事项应不能重复勾选。</p><p>明确的成功提示代表接口已确认创建；是否在设备上收到提醒仍要单独试。只配置凭据、只显示“已连接”都不等于完成本步。</p></span></label>
+</section>
+<section><h2>第 2 天 · 明天完成真实使用验收</h2>
+<label class="step"><input type="checkbox" data-step="real"><span><b>6. 准备 10 张你自己最近的截图（约 15 分钟）</b><p>建议：4 张群通知、3 张作业/PPT、2 张海报、1 张没有任务的普通图片。先自己写下每张该产生什么事项，未写清的日期标为“原图缺失”。选择后会传给已配置模型服务，只选你愿意处理的内容。</p></span></label>
+<label class="step"><input type="checkbox" data-step="measure"><span><b>7. 一次处理这 10 张，并记录 3 个数字（约 30 分钟）</b><p>从选图开始计时，直到确认完成：总共多久？修改了多少个关键字段？漏了或错误创建了多少事项？先记录原始结果，再修改。普通图不应硬建任务；同一群聊中的独立作业不能漏掉。</p></span></label>
+<label class="step"><input type="checkbox" data-step="recover"><span><b>8. 检查刷新、重启和失败恢复（约 20 分钟）</b><p>修改一条待保存事项后刷新，确认修改仍在；保存后重启应用，确认记录仍在。若飞书同步失败，先去飞书核对，再只重试失败项，不要重新上传整批图片。</p></span></label>
+<label class="step"><input type="checkbox" data-step="peer"><span><b>9. 让 2–3 位同学各自试一次（约 45 分钟）</b><p>让他们使用有权限处理的截图并自己操作，观察卡在哪一步。当前是单用户本机版，不支持手机直接连接电脑服务。不能安排同学体验时，就如实标为尚未验证。</p></span></label>
+<label class="step"><input type="checkbox" data-step="demo"><span><b>10. 留下可演示版本和问题清单（约 30 分钟）</b><p>录制“选图 → 摘要核对 → 批量保存 → 飞书中看到日程”的短视频，避开账号凭据。导出下方体验记录，记录最影响使用的 3 个问题，优先修这些。</p></span></label>
+</section>
+<section><h2>检查当前连接</h2><p class="muted">只读取本机状态，不创建日程，也不调用识图模型。</p><button id="check">检查状态</button><pre id="status">点击后显示。</pre></section>
+<section><h2>记下结果，方便下一轮修复</h2><p>建议填写：10 张耗时、修改字段数、遗漏/误建数、飞书核对结果、最影响使用的 3 个问题。</p><textarea id="notes" placeholder="例如：10 张用了……；其中……需要修改；第……张漏掉了……"></textarea><p><button id="export">导出我的验收记录</button></p><small>勾选表示你手动确认完成，不会冒充自动测试结果。导出文件不包含 App Secret、授权令牌或截图。</small></section>
+<p class="muted">本轮开发端完成的测试与仍待验证项见包内 verification/sprint-20260914/REPORT.md。真实飞书登录、目标 Windows 运行、手机权限和实际提醒应以你亲自完成的验收为准。</p>
+</main><script src="/guide.js"></script></html>

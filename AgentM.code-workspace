@@ -1,0 +1,25 @@
+{
+  "folders": [
+    {
+      "name": "AgentM",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/.test-work": true,
+      "**/.tools": true,
+      "tmp": true,
+      "archive": true
+    },
+    "search.exclude": {
+      "archive/**": true,
+      "**/data/**": true,
+      "**/logs/**": true,
+      "tmp/**": true
+    },
+    "explorer.compactFolders": false
+  }
+}

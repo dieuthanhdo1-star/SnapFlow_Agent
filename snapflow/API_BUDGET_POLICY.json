@@ -1,0 +1,13 @@
+{
+  "currency": "CNY",
+  "initial_allowance": 4500,
+  "spend_step": 1500,
+  "allowance_increment": 1500,
+  "rule": "4500 + 1500 * floor(verified_cumulative_spend / 1500)",
+  "effective_from": "2026-09-09",
+  "authority": "User instruction in this conversation",
+  "accounting_status": "Awaiting gateway billing data; token counts are not RMB costs",
+  "unpriced_prior_activity": "User reports 69 earlier calls; no RMB invoice provided",
+  "application_retries": 0,
+  "provider_identity": "Gateway aliases and returned model names do not attest upstream identity"
+}

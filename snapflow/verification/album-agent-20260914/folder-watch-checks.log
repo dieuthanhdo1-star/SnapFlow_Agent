@@ -1,0 +1,43 @@
+................................127.0.0.1 - - [14/Sep/2026 19:10:23] GET /
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /app.js
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /style.css
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /favicon.svg
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /guide.html
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /
+.127.0.0.1 - - [14/Sep/2026 19:10:23] POST /api/demo
+127.0.0.1 - - [14/Sep/2026 19:10:23] POST /api/confirm
+127.0.0.1 - - [14/Sep/2026 19:10:23] POST /api/items/00b894a66fa8d2c02ccaf0612cdebeaf/update
+.127.0.0.1 - - [14/Sep/2026 19:10:23] GET /
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /api/config
+.127.0.0.1 - - [14/Sep/2026 19:10:23] GET /api/config
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /.env
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /data/snapflow.sqlite3
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /../server.py
+127.0.0.1 - - [14/Sep/2026 19:10:23] GET /uploads/../../server.py
+.127.0.0.1 - - [14/Sep/2026 19:10:23] POST /api/demo
+127.0.0.1 - - [14/Sep/2026 19:10:23] POST /api/demo
+..................127.0.0.1 - - [14/Sep/2026 19:10:29] POST /api/feishu/connect
+127.0.0.1 - - [14/Sep/2026 19:10:29] POST /api/feishu/connect
+127.0.0.1 - - [14/Sep/2026 19:10:29] GET /api/feishu/callback
+127.0.0.1 - - [14/Sep/2026 19:10:29] GET /api/feishu/callback
+.........127.0.0.1 - - [14/Sep/2026 19:10:30] POST /api/agent/folders
+127.0.0.1 - - [14/Sep/2026 19:10:30] POST /api/agent/folders
+.......................................
+----------------------------------------------------------------------
+Ran 102 tests in 15.049s
+
+OK
+PASS Clean six-skill homepage without old guide/demo
+PASS In-page folder navigation needs no native window and never authorizes while browsing
+PASS Choose current folder, authorize once, pause and resume use persistent APIs
+PASS Batch upload automatically saves reliable results and isolates ambiguity/failure
+PASS Filters, review edits across polling and safe rendering work
+PASS Saved event exports valid calendar; task completion persists
+PASS Auto-saved item title and category can be corrected without duplication
+PASS Duplicate batch does not create records or rerun models
+PASS Explicit auto-sync authorization binds targets; revoke removes folder access
+PASS Folder panel opens without model; typed path remains available
+PASS Reload preserves data/settings; narrow viewport has no horizontal overflow
+PASS Folder button still opens panel when initial config request fails
+ALL PASS 12
+FOLDER WATCH CHECKS COMPLETE

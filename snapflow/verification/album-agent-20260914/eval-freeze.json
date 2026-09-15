@@ -1,0 +1,6 @@
+{
+  "route": "gemini-3.8-flash",
+  "images": 15,
+  "prompt_sha256": "85ea9bc4ffb6d8d0e2ec8b8e6d427b3e981006a1f9bee9d7dc4cbfbe362b7429",
+  "cloud": "10.0.6.131"
+}

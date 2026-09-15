@@ -1,0 +1,47 @@
+# Local credentials and user content must never enter version history.
+**/api_key.json
+**/vision-private.json
+**/feishu-private.json
+**/*private-config*.json
+**/.snapflow-config/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/*.p12
+**/*.sqlite*
+**/*.db
+**/data/
+**/uploads/
+/incoming/
+/archive/
+/tmp/
+
+# Local caches and generated runtime output.
+**/__pycache__/
+**/*.py[cod]
+**/node_modules/
+**/.tools/
+**/.test-work/
+**/.venv*/
+**/logs/
+**/*.sock
+**/.DS_Store
+
+# Historical datasets, local machine configuration and transfer receipts.
+/snapflow/samples/
+/snapflow/verification/*
+!/snapflow/verification/album-agent-20260914/
+/vlm-advanced-20260909/assets/
+/vlm-advanced-20260909/main/
+/vlm-advanced-20260909/diagnostics/
+/vlm-advanced-20260909/doubao-fast/
+/CODEX_GLOBAL_AGENTS.md
+/connection-check-*.md
+/tools/Start-AgentM-Remote-*.ps1
+/tools/repair-*-connection-*.ps1
+/tools/check-vscode-install-*.sh
+/deliverables/**/*.delivery.json
+/deliverables/**/*.receipt.json
+/deliverables/**/*.cmd

@@ -1,0 +1,20 @@
+{
+  "images": 15,
+  "api_valid": 15,
+  "rule_checks_passed": 15,
+  "actions": 20,
+  "auto_saved": 17,
+  "held_for_review": 3,
+  "median_seconds": 8.801,
+  "reported_tokens": 40684,
+  "cost_rmb": null,
+  "skill_counts": {
+    "homework": 5,
+    "task": 6,
+    "event": 6,
+    "idea": 1,
+    "reference": 2
+  },
+  "cloud_model": "gemini-3.8-flash",
+  "model_identity_verified": false
+}

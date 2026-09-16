@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SnapFlow · Windows 试用版交付说明</title>
+<style>
+:root{color-scheme:light;--ink:#18302e;--muted:#52665f;--green:#21664f;--line:#d9e4db}
+*{box-sizing:border-box}body{margin:0;background:#f3f6f1;color:var(--ink);font:16px/1.8 "Microsoft YaHei",system-ui,sans-serif}
+main{max-width:1000px;margin:48px auto;padding:0 24px}header{padding:40px;background:#183e35;color:#fff;border-radius:24px}
+.tag{font-size:13px;letter-spacing:2px;color:#c4dfca}h1{font-size:42px;line-height:1.2;margin:14px 0}header p{max-width:680px;color:#e1ece4}
+.flow{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.flow span{padding:6px 14px;border:1px solid #719686;border-radius:24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}.card,section{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;margin-bottom:20px}.grid .card{margin:0}
+h2{font-size:23px;line-height:1.4;margin:0 0 16px}h3{font-size:18px;margin:18px 0 6px}p{margin:8px 0}ol,ul{padding-left:24px;margin:10px 0}li{margin:8px 0}
+code{font:14px/1.7 Consolas,monospace;background:#edf3ee;border-radius:5px;padding:2px 6px;overflow-wrap:anywhere}a{color:var(--green);text-underline-offset:4px}.note{color:var(--muted);font-size:14px}.status{display:inline-block;border-radius:6px;background:#e7f2e8;color:#23543c;padding:2px 9px;font-size:13px}
+table{width:100%;border-collapse:collapse}th,td{padding:12px 8px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--green)}footer{color:var(--muted);font-size:13px;margin:24px 0 40px}
+@media(max-width:650px){main{margin:20px auto;padding:0 14px}header{padding:26px}h1{font-size:32px}.grid{grid-template-columns:1fr}.card,section{padding:20px}}
+@media print{body{background:#fff}main{margin:0;max-width:none}header{background:#fff;color:#18302e;border:1px solid var(--line)}header p,.tag{color:#52665f}section,.card{break-inside:avoid}.flow span{border-color:#52665f}}
+</style></head><body><main>
+<header><div class="tag">AGENTM / WINDOWS TRIAL · 2026.09.16</div><h1>SnapFlow 交付说明</h1>
+<p>把截图整理成能核对、能执行的事项。适合当前阶段的项目演示和小范围试用。</p>
+<div class="flow"><span>授权文件夹</span><span>自动识别与分类</span><span>核对标题与时间</span><span>手动同步飞书</span></div></header>
+<div class="grid">
+<div class="card"><h2>你已经在用这台电脑</h2><p>继续打开已经跑通的原安装目录中的 <code>start-windows.cmd</code>，保留后台窗口。</p><p>这个 ZIP 用于交付和留存；现有配置、记录与文件夹授权继续保留在原安装目录。</p><p class="note">当前交付不覆盖 Windows 上的现有程序或个人数据。</p></div>
+<div class="card"><h2>接收方是另一台电脑</h2><p>需要 Windows、已安装的 Python 3.10+、可访问的图片识别 API 和使用者自己的飞书授权。</p><p>这是 Python 启动版，尚未制作独立 EXE 安装器。交付包不包含任何真实凭据。</p></div></div>
+<section><h2>第一次打开 · 四步</h2><ol>
+<li>右键 ZIP，选择<strong>全部解压缩</strong>，放到独立文件夹。不要在 ZIP 预览窗口中启动。</li>
+<li>在解压出来的文件夹内双击 <code>start-windows.cmd</code>，等待浏览器自动打开。以启动窗口显示的地址为准。</li>
+<li>在“设置与连接 → 识别服务”配置可访问的 API 地址、密钥和模型；当前项目使用 <code>gemini-3.8-flash</code> 网关路由。新电脑须单独确认网络和调用权限。</li>
+<li>选择截图文件夹并授权。新截图进入文件夹后，等待自动整理；飞书接入按包内 <code>FEISHU_SETUP.md</code> 操作。</li>
+</ol><p class="note">通过已有 SSH 转接访问网关时，需要相应连接、Tailscale 和开发机在线。交付 ZIP 不提供这些账号或网络配置。</p></section>
+<section><h2>三分钟演示 · 用现有可用电脑</h2><table><thead><tr><th>步骤</th><th>操作与观察</th></tr></thead><tbody>
+<tr><td>1 · 放入截图</td><td>将一张未处理过、日期和内容清楚的活动或任务截图放入已授权文件夹。</td></tr>
+<tr><td>2 · 展示结果</td><td>等待事项出现，打开卡片，核对分类、标题、日期时间和原图。需要核对的条目先补全再保存。</td></tr>
+<tr><td>3 · 手动确认</td><td>点击“同步飞书”，在确认框核对目标日历或任务账号，再确认。</td></tr>
+<tr><td>4 · 飞书核对</td><td>日程到所选日历对应日期查看；任务、待办和作业到飞书任务查看，核对标题与时间。</td></tr>
+</tbody></table><p class="note">“三分钟”是演示安排，不是识别响应时间承诺；实际耗时取决于网络和模型。</p></section>
+<section><h2>飞书采用手动确认</h2><p>保持设置页的两个“将之后整理好的……自动同步”选项关闭。若之前开启过，取消勾选并点击“确认同步授权”保存。</p><p>新安装默认关闭自动同步。每条记录由你点击“同步飞书”并确认后创建；灵感和资料保存在本地。应用仅单向创建，本地编辑或完成状态不会回写飞书。</p></section>
+<section><h2>已验证与试用边界</h2><p><span class="status">用户已确认</span> 新截图自动出现整理结果、首条飞书手动同步成功。</p><p>批量持续处理、不同截图的分类准确率、Windows 重启恢复、任务和日程两类完整验收仍待补测。现有离线回归有 116 项后端检查及 12 组浏览器检查；本次交付只整理说明与打包，运行代码保持原样。</p><ul><li>支持 PNG/JPG/JPEG/WebP；单张最多 8 MB，手动批量选择最多 30 张，只监测授权文件夹当前层。</li><li>原图留在原处。关闭网页后后台仍可运行；关闭后台、关机或休眠后停止处理。</li><li>分享此干净 ZIP 即可；个人 <code>data/</code>、<code>.snapflow-config/</code> 和私有凭据留在使用者本机。</li></ul></section>
+<section><h2>遇到问题</h2><p>打不开：先确认已全部解压、Python 已安装，复制启动窗口的错误文字。</p><p>无法识别：在设置里检测识别服务；新电脑不能沿用另一台电脑的网络可用结论。</p><p>同步后没看到：先看是否显示成功，再核对类别、目标日历和日期；结果不确定时先在飞书核对。</p><p>源码与后续进度：<a href="https://github.com/Ethan-Li-k/AgentM">github.com/Ethan-Li-k/AgentM</a>。</p></section>
+<footer>交付形态：Windows 本机单用户试用版 · 内部运行版本：windows-networkfix-20260916 · 包内 MANIFEST.json 记录逐文件校验信息。</footer>
+</main></body></html>

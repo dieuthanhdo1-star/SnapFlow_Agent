@@ -1,10 +1,17 @@
 {
   "file": "SnapFlow-Windows-ConfigFix-20260914-165159.zip",
-  "bytes": 143124,
-  "sha256": "27505618dfb2a3c76a277a680e6c91d65155aa5e46f3a6ef15a40a2b18e1fd52",
-  "report": "snapflow/verification/network-repair-20260916/REPORT.md",
+  "bytes": 73442,
+  "sha256": "7910e47e5b497bd502e361e55c9c20e90a25bc26018df4defe3e6febc115bba4",
+  "report": "docs/WINDOWS_HANDOFF.md",
   "windows_target": "desktop-725gbmn",
   "windows_native_verified": false,
+  "user_confirmed": [
+    "new_screenshot_processed",
+    "first_manual_feishu_sync"
+  ],
   "revision": "windows-networkfix-20260916",
-  "repair_entry": "SnapFlow-Repair.cmd"
+  "stage": "windows-trial",
+  "sync_workflow": "manual_confirmation",
+  "repair_entry": "SnapFlow-Repair.cmd",
+  "handoff_guide": "docs/WINDOWS_HANDOFF.html"
 }

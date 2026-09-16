@@ -28,7 +28,9 @@ Windows 更新入口已通过 Tailscale 发送；传输成功不代表用户已�
 
 1. 用户的 `测试1.jpg`、`测试2.jpg`、`测试3.jpg` 很快出现“外部服务暂时无法连接或响应无效”。2026-09-16 用户提供 Windows Python 3.12 独立无凭据连接检查的完整异常：`urllib.error.URLError` 包装 `ssl.SSLEOFError: UNEXPECTED_EOF_WHILE_READING`，发生在 `do_handshake()`。这次检查在 TLS 握手完成前被断开，尚未收到 HTTP 响应；它不是证书校验失败的证据，也不能判断密钥是否有效。应用请求是否同因仍需修复后的实际识别验证。
 2. 开发机对网关 `/v1/models` 的无凭据连接检查返回 HTTP 401，证明开发机能完成 HTTPS 连接；不能据此推断 Windows 网络或密钥正常。
-3. 下一步在同一 Windows Python 中用 `urllib.request.build_opener(urllib.request.ProxyHandler({}))` 对比默认代理与直连。空代理映射仅影响这次请求，保留证书验证，不修改系统设置，不发送密钥或截图。直连若收到 HTTP 401，说明该路径能完成 TLS 并收到 HTTP 响应，但不代表凭据或模型调用通过；若仍出现 EOF，则继续排查网络链路及网关 TLS。结果返回前不预设代理是根因，不关闭证书验证，不反复调用模型或声称已修复。
+3. 2026-09-16 请求级直连对比已有结果：用户使用 `ProxyHandler({})` 后，`socket.create_connection()` 中的 `sock.connect(sa)` 抛出 `TimeoutError: timed out`，最终包装为 `URLError`。这次连接在 TCP 阶段超时，尚未进入 TLS。此前默认路径在 TLS 阶段断开，两种模式都没有取得 HTTP 响应；不能把“关闭代理”直接当作修复，也不能仅凭此断定必须使用 VPN、网关宕机或密钥错误。请求级禁用自动代理不保证绕过系统 VPN、透明代理或网络过滤。
+   - 下一步：Windows 执行 `Resolve-DnsName llm-gateway.galbot.com -Type A` 检查解析结果；用 `curl.exe -q -I --connect-timeout 10 --max-time 15 https://llm-gateway.galbot.com/v1/models` 对比另一客户端。`-q` 必须作为首个选项，避免读取 curl 默认配置；不传密钥、不关证书校验、不改系统设置。
+   - curl 与 Python 默认代理发现机制并不相同，结果差异仅用于缩小范围，不单独证明 Python 或代理是根因。HEAD 的 HTTP 状态也不等同于模型调用是否成功。根据结果再核对实际代理/VPN及网关的访问条件，不反复调用模型或声称已修复。
 4. 真实飞书账号的任务创建、日程创建、时间及幂等性仍待用户授权后的端到端验收。
 
 异常语义和请求级代理设置依据：[Python 3.12 SSL 文档](https://docs.python.org/3.12/library/ssl.html#ssl.SSLEOFError)、[ProxyHandler 文档](https://docs.python.org/3.12/library/urllib.request.html#urllib.request.ProxyHandler)。本次仅更新诊断记录与项目状态，未改动运行时代码或安装包。

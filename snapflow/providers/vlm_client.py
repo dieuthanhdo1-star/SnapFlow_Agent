@@ -26,6 +26,7 @@ class VLMClient:
             raise ValueError('A nonempty API_KEY and plain HTTPS BASE_URL are required')
         self.api = self.base if u.path.endswith('/v1') else self.base + '/v1'
         self.timeout = timeout
+        self.opener = None
 
     def safe(self, value):
         return str(value).replace(self.key, '[REDACTED]')
@@ -36,7 +37,7 @@ class VLMClient:
             headers={'Authorization': 'Bearer ' + self.key, 'Content-Type': 'application/json'},
             data=json.dumps(payload).encode() if payload is not None else None)
         try:
-            with urllib.request.build_opener(NoRedirect).open(req, timeout=self.timeout) as r:
+            with (self.opener or urllib.request.build_opener(NoRedirect)).open(req, timeout=self.timeout) as r:
                 body = r.read(4_000_001)
                 if len(body) > 4_000_000:
                     raise ValueError('Response exceeded safety size limit')

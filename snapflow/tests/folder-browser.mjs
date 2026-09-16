@@ -80,12 +80,12 @@ try{
  await click('[data-source][data-action="revoke"]');await waitFor('state.sources.length===0');
  await screenshot('02-settings-desktop.png');await click('[data-close="settings"]');
  pass('Explicit auto-sync authorization binds targets; revoke removes folder access');
- await evaluate('config.vision=false');await click('#pick-folder');await waitFor('document.querySelector("#consent").open');
+ await evaluate("window.originalApi=api; api=async(path,...args)=>{const value=await originalApi(path,...args);return path==='/api/config'?{...value,vision:false,vision_state:'unconfigured'}:value;};config.vision=false");await click('#pick-folder');await waitFor('document.querySelector("#consent").open');
  assert.equal(await evaluate('document.querySelector("#settings").open'),false);
  await evaluate(`document.querySelector('#folder-input').value=${JSON.stringify(selectedFolder)}`);
  await click('#consent-form [type=submit]');await waitFor('state.sources.length===1 && document.querySelector("#settings").open');
- assert.equal(await evaluate('document.querySelector("#source-badge").textContent'),'等待连接识别服务');
- await click('[data-close="settings"]');await evaluate('config.vision=true');
+ assert.equal(await evaluate('document.querySelector("#source-badge").textContent'),'等待配置识别服务');
+ await click('[data-close="settings"]');await evaluate('api=window.originalApi;config.vision=true');
  pass('Folder panel opens without model; typed path remains available');
  await screenshot('03-results-desktop.png');
  await cdp('Page.reload');await waitFor('state && state.items.length===4');assert.equal(await evaluate('state.settings.sync_tasks'),true);

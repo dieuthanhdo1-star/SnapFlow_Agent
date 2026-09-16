@@ -45,3 +45,7 @@
 /deliverables/**/*.delivery.json
 /deliverables/**/*.receipt.json
 /deliverables/**/*.cmd
+
+# Current connection repair evidence and the single user-facing repair entry.
+!/snapflow/verification/network-repair-20260916/
+!/deliverables/snapflow/SnapFlow-Repair.cmd

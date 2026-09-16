@@ -1,0 +1,8 @@
+{
+  "http_status": 401,
+  "tls_verified": true,
+  "transport": "local TCP forward with gateway SNI",
+  "credentials_sent": false,
+  "model_calls": 0,
+  "windows_ssh_verified": false
+}

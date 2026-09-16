@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
 URL='http://127.0.0.1:8765'
-VERSION='windows-folderwatch-20260914'
+VERSION='windows-networkfix-20260916'
 
 def address_path():
     tag=hashlib.sha256(str(ROOT).encode()).hexdigest()[:16]

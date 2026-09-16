@@ -7,7 +7,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,7000);}
 async function api(path,body){
  if(body!==undefined&&!config.csrf)config=await api('/api/config');
- const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),path==='/api/agent/pick'?190000:45000);
+ const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),path==='/api/agent/pick'?190000:path==='/api/vision/check'?90000:45000);
  try{const response=await fetch(path,body===undefined?{signal:controller.signal}:{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','X-Snapflow-Token':config.csrf},body:JSON.stringify(body)});
  const value=await response.json();if(!response.ok)throw Error(value.error||'操作未完成');return value;
  }catch(e){if(e.name==='AbortError')throw Error('本机服务响应超时，请查看启动窗口中的诊断日志。');throw e;}finally{clearTimeout(timer);}
@@ -15,14 +15,21 @@ async function api(path,body){
 function on(id,fn){$(id).addEventListener('click',async()=>{const button=$(id);button.disabled=true;try{await fn();}catch(e){toast(e.message);}finally{button.disabled=false;}});}
 function skill(item){return names[item.skill]?item.skill:(item.kind==='event'?'event':item.kind==='task'?'task':'reference');}
 function dateText(value){return value?value.slice(0,16).replace('T',' '):'';}
-async function refresh(){if(busy)return;busy=true;try{state=await api('/api/agent/status');render();}finally{busy=false;}}
+async function refresh(){if(busy)return;busy=true;try{[state,config]=await Promise.all([api('/api/agent/status'),api('/api/config')]);render();}finally{busy=false;}}
+function renderVision(){
+ const labels={configured:'已配置 · 待验证',checking:'正在检测连接',reachable:'连接检测通过 · 待识别验证',verified:'最近识别成功',failed:'最近调用或连接检测失败',unconfigured:'尚未配置'};
+ $('vision-status').textContent=(labels[config.vision_state]||'已配置 · 待验证')+(config.vision?' · '+config.vision_model:'');
+ $('vision-diagnostic').textContent=(config.vision_message||'')+(config.vision_network?.route==='bridge'?' 当前通过开发机连接，请保持 Tailscale 和开发机在线。':'');
+ $('check-vision').disabled=!config.vision||config.vision_state==='checking';
+}
 function render(){
  if(!state)return;
+ renderVision();
  const active=state.sources.find(s=>s.enabled),source=active||state.sources[0];
- $('source-badge').textContent=active?(config.vision?'自动整理中':'等待连接识别服务'):source?'已暂停':'尚未授权';
+ $('source-badge').textContent=active?(config.vision?(config.vision_state==='failed'?'识别连接待处理':'正在监测截图'):'等待配置识别服务'):source?'已暂停':'尚未授权';
  $('source-title').textContent=source?source.path.split(/[\\/]/).filter(Boolean).pop():'连接你的截图文件夹';
  $('source-description').textContent=active?(config.vision?'新截图自动整理 · '+(state.last_scan?'最近检查 '+dateText(state.last_scan):'正在等待首次检查'):'文件夹已授权，连接识别服务后开始整理。'):source?'暂停期间不会自动读取新截图。':'';
- $('source-error').textContent=(!config.vision&&config.vision_config_error)||state.error||(!config.vision?'请先在设置中连接识别服务。':'');
+ $('source-error').textContent=(config.vision_state==='failed'&&config.vision_message)||(!config.vision&&config.vision_config_error)||state.error||(!config.vision?'请先在设置中连接识别服务。':'');
  $('pick-folder').hidden=!!source;$('pause-source').hidden=!source;$('pause-source').textContent=active?'暂停整理':'继续整理';
  const count=state.items.length;$('result-count').textContent=count?`${count} 条`:'';
  const tabs=[['all','全部'],['review',`待核对${state.reviews.length?' · '+state.reviews.length:''}`],...Object.entries(names)];
@@ -63,7 +70,7 @@ async function openSettings(){
  $('source-settings').innerHTML=state.sources.map(s=>`<div>${esc(s.path)}<br><button data-source="${s.id}" data-action="${s.enabled?'pause':'resume'}">${s.enabled?'暂停':'继续'}</button><button data-source="${s.id}" data-action="revoke">撤销授权</button></div>`).join('')||'尚未授权文件夹';
  $('skill-options').innerHTML=Object.entries(state.skills).map(([id,s])=>`<label class="check"><input type="checkbox" data-skill="${id}" ${state.settings.skills.includes(id)?'checked':''}><span>${esc(s.name)}<small>${esc(s.description)}</small></span></label>`).join('');
  $('daily-limit').value=state.settings.daily_limit;
- $('vision-status').textContent=config.vision?'已连接 · '+config.vision_model:'尚未连接识别服务';
+ renderVision();
  $('feishu-status').textContent=feishu.authorized?`已授权${feishu.calendar_name?' · 日历：'+feishu.calendar_name:''}${feishu.task_connected?' · 任务：'+feishu.task_user_name:''}`:feishu.configured?'应用已准备好，登录飞书即可连接。':'尚未配置飞书应用，请由应用提供者完成下方配置。';
  $('feishu-connect').disabled=!feishu.configured;$('feishu-disconnect').hidden=!feishu.authorized;$('feishu-authorized').hidden=!feishu.authorized;
  $('feishu-app-id').value=feishu.app_id||'';
@@ -118,6 +125,7 @@ async function init(){
  $('activity').onclick=async e=>{const b=e.target.closest('button');if(!b)return;b.disabled=true;try{if(b.dataset.retry&&!confirm('重新识别会再次调用模型，确认重试？'))return;await api('/api/image-jobs/'+(b.dataset.retry||b.dataset.dismiss),{action:b.dataset.retry?'retry':'cancel'});await refresh();}catch(e){toast(e.message);}finally{b.disabled=false;}};
  $('source-settings').onclick=async e=>{const b=e.target.closest('[data-source]');if(!b)return;try{await api('/api/agent/source',{id:b.dataset.source,action:b.dataset.action});await refresh();await openSettings();toast(b.dataset.action==='revoke'?'已撤销文件夹授权，已有结果保留':'已更新');}catch(e){toast(e.message);}};
  on('save-skills',async()=>{await api('/api/agent/settings',{skills:[...document.querySelectorAll('[data-skill]:checked')].map(i=>i.dataset.skill),daily_limit:Number($('daily-limit').value)});await refresh();toast('处理设置已保存');});
+ on('check-vision',async()=>{config=await api('/api/vision/check',{});await refresh();toast(config.vision_message);});
  on('save-vision',async()=>{config=await api('/api/vision/configure',{base_url:$('vision-base').value,api_key:$('vision-key').value,model:$('vision-model').value});$('vision-key').value='';await openSettings();await refresh();toast('识别服务配置已保存');});
  on('save-feishu-app',async()=>{await api('/api/feishu/configure',{app_id:$('feishu-app-id').value,app_secret:$('feishu-app-secret').value});$('feishu-app-secret').value='';await openSettings();toast('应用配置已保存');});
  on('feishu-connect',async()=>{const result=await api('/api/feishu/connect',{});const url=new URL(result.url);if(url.protocol!=='https:'||url.hostname!=='accounts.feishu.cn')throw Error('授权地址无效');location.href=url.href;});

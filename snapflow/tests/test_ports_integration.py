@@ -15,7 +15,7 @@ class PortIntegrationTests(unittest.TestCase):
     def test_occupied_preflight_port_falls_back_and_browser_uses_actual_port(self):
         package=ARTIFACTS/'port-integration/package';package.mkdir(parents=True)
         source=Path(__file__).resolve().parents[1]
-        for name in ['server.py','vision_settings.py','batch.py','agent_engine.py','skills_engine.py','native_album.py','feishu.py','static/index.html','static/app.js','static/style.css','providers/__init__.py','providers/vlm_client.py']:
+        for name in ['server.py','vision_network.py','vision_settings.py','batch.py','agent_engine.py','skills_engine.py','native_album.py','feishu.py','static/index.html','static/app.js','static/style.css','providers/__init__.py','providers/vlm_client.py']:
             dst=package/name;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source/name,dst)
         children=[];real_popen=subprocess.Popen;real_probe=launcher.probe;count=0
         def spawn(*args,**kwargs):

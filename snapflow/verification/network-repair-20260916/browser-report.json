@@ -1,0 +1,20 @@
+{
+  "passed": 12,
+  "results": [
+    "Clean six-skill homepage without old guide/demo",
+    "In-page folder navigation needs no native window and never authorizes while browsing",
+    "Choose current folder, authorize once, pause and resume use persistent APIs",
+    "Batch upload automatically saves reliable results and isolates ambiguity/failure",
+    "Filters, review edits across polling and safe rendering work",
+    "Saved event exports valid calendar; task completion persists",
+    "Auto-saved item title and category can be corrected without duplication",
+    "Duplicate batch does not create records or rerun models",
+    "Explicit auto-sync authorization binds targets; revoke removes folder access",
+    "Folder panel opens without model; typed path remains available",
+    "Reload preserves data/settings; narrow viewport has no horizontal overflow",
+    "Folder button still opens panel when initial config request fails"
+  ],
+  "errors": [],
+  "expected_fault": "Initial config request blocked to test visible recovery",
+  "scope": "Offline browser fixture; native Windows picker and live Feishu not exercised"
+}

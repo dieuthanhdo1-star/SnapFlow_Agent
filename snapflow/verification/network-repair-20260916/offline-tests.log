@@ -1,0 +1,145 @@
+test_auto_sync_only_with_explicit_target_consent (test_album_agent.AlbumTests) ... ok
+test_disabled_skill_and_daily_quota (test_album_agent.AlbumTests) ... ok
+test_edit_saved_classification_and_invalid_event (test_album_agent.AlbumTests) ... ok
+test_exclude_existing_and_pause_resume_revoke (test_album_agent.AlbumTests) ... ok
+test_existing_new_files_dedup_and_restart (test_album_agent.AlbumTests) ... ok
+test_failed_model_never_auto_retries (test_album_agent.AlbumTests) ... ok
+test_folder_authorized_without_model_waits_then_processes (test_album_agent.AlbumTests) ... ok
+test_incomplete_write_is_not_processed_until_stable (test_album_agent.AlbumTests) ... ok
+test_manual_folder_path_requires_confirmation_and_valid_directory (test_album_agent.AlbumTests) ... ok
+test_manual_upload_requires_consent_and_deduplicates (test_album_agent.AlbumTests) ... ok
+test_no_read_without_consent_and_token_cannot_replay (test_album_agent.AlbumTests) ... ok
+test_review_missing_date_no_invention_and_multi_skill (test_album_agent.AlbumTests) ... ok
+test_revoke_during_model_call_leaves_draft_without_auto_save (test_album_agent.AlbumTests) ... ok
+test_running_watcher_processes_new_and_changed_images_without_manual_scan (test_album_agent.AlbumTests) ... ok
+test_subdirectories_symlinks_invalid_files_and_unchanged_original (test_album_agent.AlbumTests) ... ok
+test_task_connector_identity_milliseconds_and_idempotence (test_album_agent.AlbumTests) ... ok
+test_cancelled_draft_cannot_execute (test_app.AppTests) ... ok
+test_concurrent_confirmation_creates_one_record (test_app.AppTests) ... ok
+test_credentials_never_in_public_configuration (test_app.AppTests) ... ok
+test_feishu_requires_confirmation_and_retries_with_same_key (test_app.AppTests) ... ok
+test_file_type_validation_and_duplicate_upload_storage (test_app.AppTests) ... ok
+test_ics_is_utc_escaped_folded_and_preserves_reminder (test_app.AppTests) ... ok
+test_image_and_records_survive_restart (test_app.AppTests) ... ok
+test_incomplete_or_reversed_event_is_rejected (test_app.AppTests) ... ok
+test_interrupted_sync_can_be_recovered (test_app.AppTests) ... ok
+test_invalid_model_response_reports_failure (test_app.AppTests) ... ok
+test_missing_model_does_not_return_fake_recognition (test_app.AppTests) ... ok
+test_no_action_before_explicit_confirmation (test_app.AppTests) ... ok
+test_provider_response_becomes_draft_only (test_app.AppTests) ... ok
+test_reminder_requires_valid_future_time (test_app.AppTests) ... ok
+test_reminders_persist_deduplicate_snooze_and_stop_on_completion (test_app.AppTests) ... ok
+test_task_and_bookmark_do_not_invent_dates (test_app.AppTests) ... ok
+test_album_assets_and_removed_guide (test_app.HTTPTests) ... 127.0.0.1 - - [16/Sep/2026 09:25:23] GET /
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /app.js
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /style.css
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /favicon.svg
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /guide.html
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /
+ok
+test_complete_http_flow (test_app.HTTPTests) ... 127.0.0.1 - - [16/Sep/2026 09:25:23] POST /api/demo
+127.0.0.1 - - [16/Sep/2026 09:25:23] POST /api/confirm
+127.0.0.1 - - [16/Sep/2026 09:25:23] POST /api/items/897cd729bf2d8cd2895d4f395ed27277/update
+ok
+test_home_and_config (test_app.HTTPTests) ... 127.0.0.1 - - [16/Sep/2026 09:25:23] GET /
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /api/config
+ok
+test_host_and_private_files_are_protected (test_app.HTTPTests) ... 127.0.0.1 - - [16/Sep/2026 09:25:23] GET /api/config
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /.env
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /data/snapflow.sqlite3
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /../server.py
+127.0.0.1 - - [16/Sep/2026 09:25:23] GET /uploads/../../server.py
+ok
+test_write_requires_csrf_and_same_origin (test_app.HTTPTests) ... 127.0.0.1 - - [16/Sep/2026 09:25:23] POST /api/demo
+127.0.0.1 - - [16/Sep/2026 09:25:23] POST /api/demo
+ok
+test_auto_classification_needs_no_user_context (test_batch.BatchTests) ... ok
+test_batch_confirmation_is_partial_safe_and_idempotent (test_batch.BatchTests) ... ok
+test_batch_confirmation_requires_explicit_approval (test_batch.BatchTests) ... ok
+test_batch_limit_and_bad_files_are_isolated (test_batch.BatchTests) ... ok
+test_cancel_one_notice_preserves_its_sibling (test_batch.BatchTests) ... ok
+test_failure_does_not_block_other_images_and_retry_is_explicit (test_batch.BatchTests) ... ok
+test_identical_image_and_request_retries_do_not_repeat_model_calls (test_batch.BatchTests) ... ok
+test_image_limit_counts_images_not_extracted_actions (test_batch.BatchTests) ... ok
+test_invalid_action_array_does_not_create_partial_drafts (test_batch.BatchTests) ... ok
+test_legacy_single_draft_is_migrated_without_replacement (test_batch.BatchTests) ... ok
+test_manual_intake_and_reload_preserve_image_and_draft (test_batch.BatchTests) ... ok
+test_multi_notice_one_image_two_independent_drafts (test_batch.BatchTests) ... ok
+test_multi_notice_reload_and_partial_save (test_batch.BatchTests) ... ok
+test_restart_does_not_automatically_repeat_paid_calls (test_batch.BatchTests) ... ok
+test_running_cancellation_cannot_create_action (test_batch.BatchTests) ... ok
+test_running_multi_notice_cancellation_cancels_all_drafts (test_batch.BatchTests) ... ok
+test_two_worker_limit_and_queued_cancellation (test_batch.BatchTests) ... ok
+test_browser_cookie_callback_and_csrf (test_feishu.FeishuHTTPTests) ... 127.0.0.1 - - [16/Sep/2026 09:25:28] POST /api/feishu/connect
+127.0.0.1 - - [16/Sep/2026 09:25:28] POST /api/feishu/connect
+127.0.0.1 - - [16/Sep/2026 09:25:28] GET /api/feishu/callback
+127.0.0.1 - - [16/Sep/2026 09:25:28] GET /api/feishu/callback
+ok
+test_bulk_preview_target_guard_and_verified_count (test_feishu.FeishuTests) ... ok
+test_calendar_pagination_permissions_selection (test_feishu.FeishuTests) ... ok
+test_disconnect_clears_tokens (test_feishu.FeishuTests) ... ok
+test_expired_cancelled_and_changed_app_authorization (test_feishu.FeishuTests) ... ok
+test_oauth_state_browser_binding_pkce_and_replay (test_feishu.FeishuTests) ... ok
+test_refresh_rotation (test_feishu.FeishuTests) ... ok
+test_secrets_not_in_status_and_persist (test_feishu.FeishuTests) ... ok
+test_user_sync_explicit_idempotency_and_target_binding (test_feishu.FeishuTests) ... ok
+test_http_requires_csrf_and_browsing_does_not_authorize (test_folder_browser.FolderBrowserTests) ... 127.0.0.1 - - [16/Sep/2026 09:25:29] POST /api/agent/folders
+127.0.0.1 - - [16/Sep/2026 09:25:29] POST /api/agent/folders
+ok
+test_invalid_missing_file_and_outside_root_rejected (test_folder_browser.FolderBrowserTests) ... ok
+test_large_directory_is_bounded (test_folder_browser.FolderBrowserTests) ... ok
+test_linked_directories_are_not_listed (test_folder_browser.FolderBrowserTests) ... ok
+test_roots_directories_parent_and_no_file_contents (test_folder_browser.FolderBrowserTests) ... ok
+test_bad_gateway_config_disables_ai_safely (test_gateway.GatewayTests) ... ok
+test_detect_gateway_without_exposing_credentials (test_gateway.GatewayTests) ... ok
+test_direct_vision_uses_the_same_timeout (test_gateway.GatewayTests) ... ok
+test_empty_and_invalid_response_still_audited (test_gateway.GatewayTests) ... ok
+test_gateway_success_is_a_draft_then_preserves_audit_when_confirmed (test_gateway.GatewayTests) ... ok
+test_model_configuration_remains_explicitly_overridable (test_gateway.GatewayTests) ... ok
+test_timeout_default_override_and_bounds_reach_gateway (test_gateway.GatewayTests) ... ok
+test_timeout_does_not_retry_or_leak_provider_error (test_gateway.GatewayTests) ... ok
+test_truncated_valid_json_is_not_accepted (test_gateway.GatewayTests) ... ok
+test_all_ports_denied_reports_error_without_child (test_launcher.LauncherTests) ... ok
+test_child_error_preserves_log_and_reports_path (test_launcher.LauncherTests) ... ok
+test_existing_server_browser_failure_is_visible (test_launcher.LauncherTests) ... ok
+test_missing_assets_fail_before_browser (test_launcher.LauncherTests) ... ok
+test_page_check_prevents_opening_broken_page (test_launcher.LauncherTests) ... ok
+test_probe_bypasses_proxy (test_launcher.LauncherTests) ... ok
+test_probe_handles_invalid_response (test_launcher.LauncherTests) ... ok
+test_probe_rejects_wrong_version (test_launcher.LauncherTests) ... ok
+test_every_denied_port_is_bounded (test_launcher.PortTests) ... ok
+test_real_server_bind_falls_back_after_10013 (test_launcher.PortTests) ... ok
+test_saved_port_is_validated_and_reused (test_launcher.PortTests) ... ok
+test_unrelated_bind_errors_are_not_hidden (test_launcher.PortTests) ... ok
+test_windows_10013_preflight_moves_to_next_port (test_launcher.PortTests) ... ok
+test_occupied_preflight_port_falls_back_and_browser_uses_actual_port (test_ports_integration.PortIntegrationTests) ... ok
+test_configuration_is_not_success (test_vision_network.ConnectionStatusTests) ... ok
+test_connection_probe_does_not_claim_inference_success (test_vision_network.ConnectionStatusTests) ... ok
+test_failed_detection_records_safe_status (test_vision_network.ConnectionStatusTests) ... ok
+test_successful_image_and_later_failure_are_distinct (test_vision_network.ConnectionStatusTests) ... ok
+test_bound_origin_and_https_no_redirects (test_vision_network.NetworkTests) ... ok
+test_bridge_only_for_exact_gateway_and_explicit_enable (test_vision_network.NetworkTests) ... ok
+test_direct_fallback_and_only_one_post_even_on_timeout (test_vision_network.NetworkTests) ... ok
+test_error_classification_contains_no_credentials (test_vision_network.NetworkTests) ... ok
+test_failed_preflight_sends_no_image_and_cools_down (test_vision_network.NetworkTests) ... ok
+test_http_401_is_not_a_reason_to_reroute (test_vision_network.NetworkTests) ... ok
+test_tunnel_preserves_original_tls_identity_and_verification (test_vision_network.NetworkTests) ... ok
+test_conflicting_old_accounts_are_not_silently_selected (test_vision_settings.VisionSettingsTests) ... ok
+test_current_explicit_config_wins_over_old_version (test_vision_settings.VisionSettingsTests) ... ok
+test_disabled_does_not_reenable_or_copy_credentials (test_vision_settings.VisionSettingsTests) ... ok
+test_explicit_test_config_never_reads_or_copies_real_credentials (test_vision_settings.VisionSettingsTests) ... ok
+test_malformed_local_settings_do_not_crash_startup (test_vision_settings.VisionSettingsTests) ... ok
+test_missing_config_keeps_default_model_instructions_and_user_data (test_vision_settings.VisionSettingsTests) ... ok
+test_nested_extraction_finds_existing_parent_key (test_vision_settings.VisionSettingsTests) ... ok
+test_saving_new_settings_updates_shared_configuration (test_vision_settings.VisionSettingsTests) ... ok
+test_unrelated_folders_are_not_used_as_configuration_sources (test_vision_settings.VisionSettingsTests) ... ok
+test_upgrade_gateway_survives_old_config_removal (test_vision_settings.VisionSettingsTests) ... ok
+test_upgrade_recovers_old_direct_model_and_keeps_secrets_private (test_vision_settings.VisionSettingsTests) ... ok
+test_bad_payload_does_not_stop_or_modify_app (test_windows_repair.RepairTests) ... ok
+test_exact_install_backup_hashes_and_preservation (test_windows_repair.RepairTests) ... ok
+test_partial_write_rolls_back_original_files (test_windows_repair.RepairTests) ... ok
+
+----------------------------------------------------------------------
+Ran 116 tests in 15.414s
+
+OK

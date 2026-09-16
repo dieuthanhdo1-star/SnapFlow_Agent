@@ -29,7 +29,12 @@
 
 ### 飞书准备情况
 
-已检查 `feishu.py` 与现有设置页面，具备 OAuth、日历选择、我的任务连接和显式自动同步授权。开发机已知运行配置中未找到飞书应用凭据；这不能证明 Windows 上未配置，需以用户页面或账号后台为准。用户明确选择“我自己的飞书账号”，随后确认应用“创建好了”。已准备与当前 OAuth 请求完全一致的四项用户权限导入 JSON，以及逐步配置说明 `docs/FEISHU_SETUP.md`。权限、回调、发布与真实授权仍待用户完成，不能记为已接通。首次接入需要在其可管理的飞书应用中配置权限及实际回调地址；当前没有该账号的后台登录会话，用户需要自行登录。无需把 App Secret 发到聊天，应填入 SnapFlow 的本机配置表单。官方流程参考：[飞书官方登录示例](https://github.com/larksuite/lark-samples/blob/main/web_app_with_auth/python/README.zh.md)。
+用户已提供 App ID 和 App Secret 并授权代配置。2026-09-16 开发机调用飞书官方凭据接口返回 HTTP 200 / code 0，确认应用凭据有效；未输出或持久化访问令牌。应用信息管理接口返回 HTTP 400 / code 99991672（缺少权限），当前无法通过该管理接口完成后台设置，也没有用户已登录后台的浏览器控制通道。租户授权状态查询返回四项所需 user scope 的 grant_status=1，仅记录接口结果，不将其当作已发布、已完成用户授权或已同步的证据。
+
+已制作自动导入助手 `SnapFlow-Connect-Feishu.cmd`，与单独的 `SnapFlow-feishu-private-config.json` 配套：校验文件 SHA-256 与 App ID，支持 Taildrop 同名重命名，使用 CSRF 保护的本机 API 保存；改动前校验备份，同凭据保留已有 OAuth 登录；展示实际回调、权限复制和浏览器入口。密钥不嵌入代码、CMD 或发布包，也不提交 GitHub。10 项隔离本机 HTTP/导入/备份/保留登录/不回显检查通过；原生 Windows 执行及真实任务、日程同步仍未验收。 两个配套文件已于 2026-09-16 11:03:15（开发机日志时间）通过 Tailscale 发送至用户 Windows，传输退出码 0；发送成功不等于已导入。
+
+已检查现有应用具备 OAuth、日历选择、我的任务连接和显式自动同步授权。权限 JSON 与当前 OAuth 四项请求一致。下一步需在 Windows 运行助手，完成后台实际回调和发布、本人浏览器授权，然后分别验收一条任务、一个日程；不得将凭据验证成功写成“飞书已配好”。流程依据：[飞书官方登录示例](https://github.com/larksuite/lark-samples/blob/main/web_app_with_auth/python/README.zh.md)。
+
 
 ## 本次修复交付
 
@@ -59,7 +64,7 @@ Windows 更新入口已通过 Tailscale 发送；传输成功不代表用户已�
 
 ## 当前需要用户的一步
 
-飞书应用已创建。当前只需在该应用的“权限管理 → 批量导入/导出权限”导入 `deliverables/snapflow/Feishu-Permissions.json`。后续按 `docs/FEISHU_SETUP.md` 保存本机凭据、配置实际回调、发布并登录授权；不用改动已可用的截图识别配置。
+保持收到的 CMD 与私有 JSON 在同一文件夹，双击最新收到的 `SnapFlow-Connect-Feishu.cmd`，自动导入已验证的应用凭据。然后按窗口完成后台权限、真实回调和发布，再在 SnapFlow 点击“登录飞书并授权”。无需再次填写密钥；JSON 不需要打开。当前无法远程执行 Windows 文件或操作其浏览器，以上实际执行尚待确认。
 
 ## 开发验证
 

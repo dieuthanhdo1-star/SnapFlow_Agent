@@ -1,0 +1,11 @@
+{
+  "scopes": {
+    "tenant": [],
+    "user": [
+      "offline_access",
+      "calendar:calendar:read",
+      "calendar:calendar.event:create",
+      "task:task:write"
+    ]
+  }
+}

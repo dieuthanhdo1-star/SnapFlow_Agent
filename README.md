@@ -15,7 +15,7 @@ Windows 相册截图 Agent · 文件夹授权 · 自动分类 · 飞书任务与
 ---
 
 > **当前状态 · 2026-09-16**<br>
-> 文件夹选择、自动监测、分类与本地保存已实现。Windows 默认连接出现 TLS 断开、直连 TCP 超时；已新增连接检测与可选的已有 SSH 转接，并做好一键修复入口。116 项离线检查和 12 组浏览器检查通过；用户已明确确认新截图放进授权文件夹后能自动出现结果，首个自动处理场景通过。当前进入个人飞书账号接入；分类质量、重启恢复及真实飞书同步仍待验收。
+> 文件夹选择、自动监测、分类与本地保存已实现。Windows 默认连接出现 TLS 断开、直连 TCP 超时；已新增连接检测与可选的已有 SSH 转接，并做好一键修复入口。116 项离线检查和 12 组浏览器检查通过；用户已明确确认新截图放进授权文件夹后能自动出现结果，首个自动处理场景通过。用户已创建飞书应用，当前准备权限与本人授权；分类质量、重启恢复及真实飞书同步仍待验收。
 >
 > **当前唯一测试包**：[`SnapFlow-Windows-ConfigFix-20260914-165159.zip`](deliverables/snapflow/SnapFlow-Windows-ConfigFix-20260914-165159.zip)<br>
 > 包名保持不变；当前内部代码版本为 `windows-networkfix-20260916`。同名包可能已更新，请以 [`LATEST.json`](deliverables/snapflow/LATEST.json)、[SHA-256](deliverables/snapflow/SnapFlow-Windows-ConfigFix-20260914-165159.sha256) 和 Git 提交记录区分内容。
@@ -115,7 +115,7 @@ flowchart TD
 | **已通过** | 新截图自动出现结果 | 用户已确认无需页面上传即可自动处理；保留当前可用版本 |
 | **P1** | 自动处理稳定性验收 | 首次新增已通过；继续验证多图、去重、修改、暂停、恢复和重启 |
 | **P1** | 真实截图质量验收 | 覆盖聊天、作业、海报、待办、灵感和资料；关键字段可核对，不编造日期或事项 |
-| **P0 · 当前** | 个人飞书账号接入与验收 | 完成应用配置和本人授权，创建一条任务和一个日程，核对时间、目标及重复操作 |
+| **P0 · 当前** | 个人飞书账号接入与验收 | 应用已创建；按[配置步骤](docs/FEISHU_SETUP.md)导入权限、设置回调并完成本人授权，再验证任务和日程 |
 | **P1** | 细化连接错误和处理状态 | 已区分已配置、检测通过和识别成功，并细化部分网络错误；继续完善权限、额度和返回格式提示 |
 | **P2** | 统一安装、更新与配置 | 一个明确的启动入口；升级保留密钥、文件夹授权和记录，无需拼装多个补丁 |
 | **P2** | 完成费用核算 | 获得网关费用依据，再验证预算统计与扩充逻辑 |
@@ -172,6 +172,8 @@ SNAPFLOW_TEST_OUTPUT="$PWD/tmp/local-tests" PYTHONDONTWRITEBYTECODE=1 \
 **保存约定**：每次取得可复核的进展后，检查改动和适当验证，同步本 README 与 `PROJECT_STATUS.md`，提交并推送到 GitHub。提交记录保存每一阶段；不强制推送，不把未验收事项写成已完成。具体约定见 [AGENTS.md](AGENTS.md)。
 
 ## 项目资料
+
+- [飞书接入步骤](docs/FEISHU_SETUP.md) · [四项用户权限导入 JSON](deliverables/snapflow/Feishu-Permissions.json)
 
 - [产品定义 Word](deliverables/snapflow/SnapFlow_截图行动Agent_产品定义_V0.1.docx)
 - [竞品分析 Word](deliverables/snapflow/SnapFlow_竞品分析_20260914.docx) · [PDF](deliverables/snapflow/SnapFlow_竞品分析_20260914.pdf)

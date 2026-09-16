@@ -26,10 +26,12 @@ Windows 更新入口已通过 Tailscale 发送；传输成功不代表用户已�
 
 ## 当前阻塞与下一步
 
-1. 用户的 `测试1.jpg`、`测试2.jpg`、`测试3.jpg` 很快出现“外部服务暂时无法连接或响应无效”。说明任务进入处理流程，但 Windows 端请求失败的具体原因未确定。
+1. 用户的 `测试1.jpg`、`测试2.jpg`、`测试3.jpg` 很快出现“外部服务暂时无法连接或响应无效”。2026-09-16 用户提供 Windows Python 3.12 独立无凭据连接检查的完整异常：`urllib.error.URLError` 包装 `ssl.SSLEOFError: UNEXPECTED_EOF_WHILE_READING`，发生在 `do_handshake()`。这次检查在 TLS 握手完成前被断开，尚未收到 HTTP 响应；它不是证书校验失败的证据，也不能判断密钥是否有效。应用请求是否同因仍需修复后的实际识别验证。
 2. 开发机对网关 `/v1/models` 的无凭据连接检查返回 HTTP 401，证明开发机能完成 HTTPS 连接；不能据此推断 Windows 网络或密钥正常。
-3. 已提供 Windows Python 单行连通性检查，等待具体输出。下一步根据 DNS、代理、TLS 或 HTTP 结果定位；不要未经诊断反复调用模型、自动重试或声称已修复。
+3. 下一步在同一 Windows Python 中用 `urllib.request.build_opener(urllib.request.ProxyHandler({}))` 对比默认代理与直连。空代理映射仅影响这次请求，保留证书验证，不修改系统设置，不发送密钥或截图。直连若收到 HTTP 401，说明该路径能完成 TLS 并收到 HTTP 响应，但不代表凭据或模型调用通过；若仍出现 EOF，则继续排查网络链路及网关 TLS。结果返回前不预设代理是根因，不关闭证书验证，不反复调用模型或声称已修复。
 4. 真实飞书账号的任务创建、日程创建、时间及幂等性仍待用户授权后的端到端验收。
+
+异常语义和请求级代理设置依据：[Python 3.12 SSL 文档](https://docs.python.org/3.12/library/ssl.html#ssl.SSLEOFError)、[ProxyHandler 文档](https://docs.python.org/3.12/library/urllib.request.html#urllib.request.ProxyHandler)。本次仅更新诊断记录与项目状态，未改动运行时代码或安装包。
 
 ## 开发验证
 

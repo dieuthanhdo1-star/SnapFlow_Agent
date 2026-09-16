@@ -1,0 +1,3 @@
+# Preserve Windows executable payload bytes and treat CRLF as intentional.
+*.cmd -text whitespace=cr-at-eol
+*.zip -text

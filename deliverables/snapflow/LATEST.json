@@ -1,7 +1,7 @@
 {
   "file": "SnapFlow-Windows-ConfigFix-20260914-165159.zip",
-  "bytes": 73442,
-  "sha256": "7910e47e5b497bd502e361e55c9c20e90a25bc26018df4defe3e6febc115bba4",
+  "bytes": 73459,
+  "sha256": "df8f48064d83c229115b64e9cf76c0c207c021760b434c7ed8a2e087312b8292",
   "report": "docs/WINDOWS_HANDOFF.md",
   "windows_target": "desktop-725gbmn",
   "windows_native_verified": false,

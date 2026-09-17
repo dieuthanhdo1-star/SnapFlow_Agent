@@ -42,4 +42,4 @@
 
 内部运行版本：`windows-networkfix-20260916`。本次只整理交付说明与打包，运行代码未改动；原有 116 项离线检查及 12 组浏览器检查是历史验证记录，不代替新电脑实际使用验收。
 
-源码与进度：[Ethan-Li-k/AgentM](https://github.com/Ethan-Li-k/AgentM)。包内 `MANIFEST.json` 包含逐文件 SHA-256，外部 `.sha256` 文件记录整个 ZIP 的校验值。
+源码与进度：[dieuthanhdo1-star/SnapFlow_Agent](https://github.com/dieuthanhdo1-star/SnapFlow_Agent)。包内 `MANIFEST.json` 包含逐文件 SHA-256，外部 `.sha256` 文件记录整个 ZIP 的校验值。

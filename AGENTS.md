@@ -2,7 +2,7 @@
 
 ## 保存进展
 
-- 用户已授权将本项目推送到 `git@github.com:Ethan-Li-k/AgentM.git`。
+- 用户已授权将本项目推送到 `git@github.com:dieuthanhdo1-star/SnapFlow_Agent.git`。
 - 每次完成一个有明确进展、可以复核的修改后，检查差异，执行适当验证，创建描述清楚的 Git 提交，并推送到当前工作分支。无须每次重复请求推送许可。
 - 默认分支为 `main`。推送前核对远端状态，保留既有历史；不得强制推送或重写他人提交。
 - 不要把尚未实现或尚未在 Windows 验证的功能写成已经完成。把当前问题和下一步更新到 `PROJECT_STATUS.md`。

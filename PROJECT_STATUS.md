@@ -4,10 +4,17 @@
 
 ## 仓库迁移 · 2026-09-17
 
-- 当前目标仓库为 `https://github.com/dieuthanhdo1-star/SnapFlow_Agent`。旧仓库作为本机 `previous-origin` 保留，默认 `origin` 指向新仓库。
-- 项目级 Git 提交身份设为 `Mei Miao <dieuthanhdo1@gmail.com>`；新提交使用该身份，已有提交作者与历史不重写。
+- 当前目标仓库为 `https://github.com/dieuthanhdo1-star/SnapFlow_Agent`。默认 `origin` 指向新仓库；本次历史清理后移除本机旧仓库引用，恢复备份单独归档。
+- 项目级 Git 提交身份设为 `Mei Miao <dieuthanhdo1@gmail.com>`；新提交使用该身份；根据用户后续明确授权，已有 13 条提交的作者与提交者也统一为该身份。
 - 用户指定的 SSH 私钥已验证为新仓库所属账号；密钥只存本机 Git 元数据目录，权限为 0600。原 `.vscode/key.md` 已加入忽略规则并收紧权限，均不入库。
 - 文档及交付包中的项目链接同步指向新仓库；运行代码保持原样。
+
+## 提交归属整理 · 2026-09-17
+
+- 用户明确要求统一贡献者。13 条既有提交已重写作者、提交者为 `Mei Miao <dieuthanhdo1@gmail.com>`，保留原提交内容、日期和父子顺序；每条源代码树均逐一验证不变。
+- 清理前生成完整 Git bundle，验证可恢复、提交数、对象完整性和 SHA-256，保存在未跟踪的 `archive/`。备份不上传；不删除旧远端仓库或其他人的副本。
+- 本次只更新贡献归属、维护说明和提交约定，Windows 运行代码与交付包内容不变。新仓库当前仅有 main，无其他分支、标签或 PR 引用。
+- 远端历史更新使用绑定原 main 提交值的 force-with-lease；GitHub 贡献者统计在重写后可能需要约 24 小时刷新。旧 SHA 缓存及独立副本不会由此自动清除，不能将分支清理表述为所有外部副本永久消失。
 
 ## 当前版本
 

@@ -6,6 +6,8 @@
 
 Windows 相册截图 Agent · 文件夹授权 · 自动分类 · 飞书任务与日历
 
+维护者：[Mei Miao](https://github.com/dieuthanhdo1-star) · 提交归属统一为 `Mei Miao <dieuthanhdo1@gmail.com>`。
+
 `Windows 首版开发中`　`Gemini 3.8 Flash`　`116 项后端检查`　`12 组浏览器检查`
 
 [GitHub 仓库](https://github.com/dieuthanhdo1-star/SnapFlow_Agent) · [开始使用](#开始使用) · [项目流程](#项目流程) · [完成情况](#完成情况) · [下一步](#下一步) · [开发与验证](#开发与验证)
